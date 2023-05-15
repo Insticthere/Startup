@@ -36,16 +36,16 @@ export default function Top() {
   
     const fetchWeatherData = async (latitude, longitude) => {
       try {
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,daily&appid=${import.meta.env.VITE_KEY_WAPI}`;
-        const response = await fetch(weatherUrl);
-        
+        const weatherUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?unitGroup=us&key=7Q75UY9QFL2XN8FTUEH53972G`;
+        const response = await fetch(weatherUrl); 
         if (response.ok) {
           const weatherData = await response.json();
           setWeather({
-            temp: weatherData.current.temp,
-            weather : weatherData.current.weather.main
+            temp: weatherData.currentConditions.conditions,
+            weather : weatherData.currentConditions.temp,
+            feelsLike: weatherData.currentConditions.feelslike,
+            humidity: weatherData.currentConditions.humidity
           })
-          console.log(weatherData);
         } else {
           throw new Error('Failed to fetch weather data');
         }
@@ -63,8 +63,8 @@ export default function Top() {
       <div className="w-full h-full bg-transparent flex justify-center items-center ">
         <div className="rounded-lg">
           <h1 className='text-white font-bold text-[7em] text-center m-0 line leading-none'>{currentTime ? currentTime : ""}</h1>
-          {ipData ? <p className="text-center text-lg">{ipData.ip}, {ipData.city}, {ipData.country_name}</p> : ""}
-          {Weather ? <p>{Weather.temp}, {Weather.weather}</p> : ""}
+          {ipData ? <p className="text-center text-2xl">{ipData.ip}, {ipData.city}, {ipData.country_name}</p> : ""}
+          {Weather ? <p className="text-center text-2xl">{Weather.temp}, {Weather.weather}</p> : "ok"}
         </div>
       </div>
     </div>
