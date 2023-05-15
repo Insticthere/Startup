@@ -2,8 +2,6 @@ const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-pla
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`
 const QUEUE_ENDPOINT = `https://api.spotify.com/v1/me/player/queue`
 
-
-
 // This function gets the access token so that we can access the API
 
 const getAccessToken = async (basic, refresh_token) => {
@@ -39,6 +37,6 @@ export const getQueue = async (basic, refresh_token) => {
       'Authorization': `Bearer ${access_token}`
     }
   })
-  const data = response_getTopTracks
+  const data = response_getTopTracks.json()
   return data
 }
