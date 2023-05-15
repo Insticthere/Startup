@@ -35,6 +35,7 @@ function Spotify() {
       .then((data) => ({
         name: data.queue[0].name,
         image: data.queue[0].album.images[0].url,
+        url: data.queue[0].external_urls.spotify
       }))
       ,
     {
@@ -59,35 +60,35 @@ function Spotify() {
   return (
     <>
       {currentTrack.isPlaying ? (
-        <div className="rounded-xl backdrop-blur-sm p-2.5 relative bg-[#ffffff10]">
-          <div className="flex justify-center">
+        <div className="rounded-lg backdrop-blur-sm p-2 relative bg-[#ffffff10] min-w-[125px] max-w-[300px]">
+          <div className="flex">
             <div className="text-center mr-3 shrink-0">
               <img
                 src={currentTrack.image}
                 alt="album cover"
-                className="rounded-md w-[110px]"
+                className="rounded-md w-[70px]"
                 rel="preload"
               />
             </div>
-            <div className='max-w-[250px]'>
-              <h3 className="text-[20px] ">Spotify</h3>
+            <div className='max-w-[200px]'>
               <a
-                className="text-lg hover:underline block w-fit"
+                className="text-lg hover:underline block w-fit leading-none text-ellipsis whitespace-nowrap overflow-hidden leading max-w-[200px]"
                 href={currentTrack.url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <p className=' text-ellipsis whitespace-nowrap overflow-hidden leading leading-snug'>{currentTrack.name}</p>
+                <p className='text-ellipsis whitespace-nowrap overflow-hidden leading-relaxed max-w-[240px]'>{currentTrack.name}</p>
               </a>
-              <p className="text-gray-400 text-[15px]">{currentTrack.artist}</p>
-              {queueData && currentTrack && currentTrack.isPlaying && currentTrack.name !== queueData.name && (
-        <div><p className='max-w-[240px] text-ellipsis whitespace-nowrap overflow-hidden  '>Next: {queueData.name}</p></div>
-      )}
+              <p className="text-gray-400 text-[15px] leading-none text-sm">{currentTrack.artist}</p>
             </div>
           </div>
         </div>
       ) : ""}
-
+      <div className='px-2 py-1'>
+        {queueData && currentTrack && currentTrack.isPlaying && currentTrack.name !== queueData.name && (
+          <div><a href={queueData.url}><p className='max-w-[250px] text-ellipsis whitespace-nowrap overflow-hidden text-sm'>Next: {queueData.name}</p></a></div>
+        )}
+      </div>
 
     </>
   );

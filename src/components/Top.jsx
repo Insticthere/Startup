@@ -21,7 +21,7 @@ export default function Top() {
   useEffect(() => {
     const fetchIpData = async () => {
       try {
-        const response = await fetch('https://ipapi.co/json/');
+        const response = await fetch('https://ipwho.is/');
         if (response.ok) {
           const data = await response.json();
           setIpData(data);
@@ -63,9 +63,9 @@ export default function Top() {
     <div className='w-full h-full'>
       <div className="w-full h-full bg-transparent flex justify-center items-center ">
         <div className="rounded-lg">
-          <h1 className='text-white font-bold text-[7em] text-center m-0 line leading-none'>{currentTime ? currentTime : ""}</h1>
-          {ipData ? <p className="text-center text-2xl">{ipData.ip}, {ipData.city}, {ipData.country_name}</p> : ""}
-          {Weather ? <p className="text-center text-2xl">{Weather.weather}, {Weather.temp}°C</p> : "ok"}
+          <h1 className='text-white font-bold text-[7em] text-center m-0 line leading-none'>{currentTime ? currentTime : <></>}</h1>
+          {ipData ? <p className="text-center text-2xl">{ipData.ip}, {ipData.city}, {ipData.country}</p> : <></>}
+          {Weather ? <p className="text-center text-2xl">{Weather.weather}, {Weather.temp}°C</p> : <></>}
         </div>
       </div>
     </div>
