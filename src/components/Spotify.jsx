@@ -59,29 +59,29 @@ function Spotify() {
   return (
     <>
       {currentTrack.isPlaying ? (
-        <div className="rounded-xl backdrop-blur-sm p-2 relative bg-[#ffffff10]">
+        <div className="rounded-xl backdrop-blur-sm p-2.5 relative bg-[#ffffff10]">
           <div className="flex justify-center">
             <div className="text-center mr-3 shrink-0">
               <img
                 src={currentTrack.image}
                 alt="album cover"
-                className="rounded-md max-w-[100px] w-[100%] h-auto min-w-[120px]"
+                className="rounded-md w-[110px]"
                 rel="preload"
               />
             </div>
-            <div>
-              <h3 className="text-[20px]">Spotify</h3>
+            <div className='max-w-[250px]'>
+              <h3 className="text-[20px] ">Spotify</h3>
               <a
                 className="text-lg hover:underline block w-fit"
                 href={currentTrack.url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <p >{currentTrack.name}</p>
+                <p className=' text-ellipsis whitespace-nowrap overflow-hidden leading leading-snug'>{currentTrack.name}</p>
               </a>
               <p className="text-gray-400 text-[15px]">{currentTrack.artist}</p>
               {queueData && currentTrack && currentTrack.isPlaying && currentTrack.name !== queueData.name && (
-        <div><p className='w-60 ecl'>Next: {queueData.name}</p></div>
+        <div><p className='max-w-[240px] text-ellipsis whitespace-nowrap overflow-hidden  '>Next: {queueData.name}</p></div>
       )}
             </div>
           </div>

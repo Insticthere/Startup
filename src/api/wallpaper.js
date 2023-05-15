@@ -6,7 +6,7 @@ async function handleWallpaperChange(url, key) {
     })
       .then((res) => res.json())
       .then((data) => {
-        data = data[0]; // It sends an array
+        data = data[0]; // It sends an array  
         return {
           image: data.urls.full,
           credit: `${data.user.name}`,

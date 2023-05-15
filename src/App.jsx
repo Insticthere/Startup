@@ -25,7 +25,7 @@ export default function Home() {
           backgroundColor: `${wallpaper.color}`,
         }}
       ></img>
-      <div className="absolute bottom-0 left-0 p-3 text-white">
+      <div className="absolute bottom-0 left-0 p-2 text-white">
       <a href={wallpaper.authorlink} target="_blank" rel="noopener noreferrer" className='hover:underline'><span>{wallpaper.author}, Splash</span></a>
         
       </div>

@@ -40,9 +40,10 @@ export default function Top() {
         const response = await fetch(weatherUrl); 
         if (response.ok) {
           const weatherData = await response.json();
+          console.log(weatherData)
           setWeather({
-            temp: weatherData.currentConditions.conditions,
-            weather : weatherData.currentConditions.temp,
+            temp: (((weatherData.currentConditions.temp - 32)*5)/9).toFixed(1),
+            weather : weatherData.currentConditions.conditions,
             feelsLike: weatherData.currentConditions.feelslike,
             humidity: weatherData.currentConditions.humidity
           })
@@ -64,7 +65,7 @@ export default function Top() {
         <div className="rounded-lg">
           <h1 className='text-white font-bold text-[7em] text-center m-0 line leading-none'>{currentTime ? currentTime : ""}</h1>
           {ipData ? <p className="text-center text-2xl">{ipData.ip}, {ipData.city}, {ipData.country_name}</p> : ""}
-          {Weather ? <p className="text-center text-2xl">{Weather.temp}, {Weather.weather}</p> : "ok"}
+          {Weather ? <p className="text-center text-2xl">{Weather.weather}, {Weather.temp}°C</p> : "ok"}
         </div>
       </div>
     </div>
