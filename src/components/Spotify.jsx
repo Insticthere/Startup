@@ -60,7 +60,7 @@ function Spotify() {
   return (
     <>
       {currentTrack.isPlaying ? (
-        <div className="rounded-lg backdrop-blur-sm p-2 relative bg-[#ffffff10] min-w-[125px] max-w-[300px]">
+        <div className="rounded-lg backdrop-blur-sm p-2 relative bg-[#ffffff10] min-w-[125px] max-w-[300px] my-2">
           <div className="flex">
             <div className="text-center mr-3 shrink-0">
               <img
@@ -79,16 +79,16 @@ function Spotify() {
               >
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden leading-relaxed max-w-[240px]'>{currentTrack.name}</p>
               </a>
-              <p className="text-gray-400 text-[15px] leading-none text-sm">{currentTrack.artist}</p>
+              <p className="text-gray-400 text-[15px] leading-none text-sm ">{currentTrack.artist}</p>
+                {queueData && currentTrack && currentTrack.isPlaying && currentTrack.name !== queueData.name && (
+            <div><a href={queueData.url}><p className='max-w-[250px] text-ellipsis whitespace-nowrap overflow-hidden text-sm'>Next: {queueData.name}</p></a></div>
+          )}
             </div>
           </div>
+          
         </div>
       ) : ""}
-      <div className='px-2 py-1'>
-        {queueData && currentTrack && currentTrack.isPlaying && currentTrack.name !== queueData.name && (
-          <div><a href={queueData.url}><p className='max-w-[250px] text-ellipsis whitespace-nowrap overflow-hidden text-sm'>Next: {queueData.name}</p></a></div>
-        )}
-      </div>
+      
 
     </>
   );
