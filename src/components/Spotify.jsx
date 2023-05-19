@@ -14,7 +14,7 @@ function Spotify() {
       .then((response) => response.json())
       .then((data) => ({
         name: data.item.name,
-        artist: data.item.artists.map((artist) => artist.name).join(', '),
+        artist: data.item.artists[0].name,
         image: data.item.album.images[0].url,
         url: data.item.external_urls.spotify,
         isPlaying: data.is_playing,
